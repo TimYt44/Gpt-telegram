@@ -39,9 +39,9 @@ class KKTextMod(loader.Module):
                 await message.edit("<b>Минуточку...</b>")
                 async with message.client.conversation(chat) as conv:
                     try:
-                        
+                        time.sleep(40)
                         response = conv.wait_event(events.NewMessage(incoming=True, from_users=5896221213))
-                        time.sleep(20)
+                        
                         await message.client.send_message(chat, reply)
                         response = await response
                     except YouBlockedUserError:
