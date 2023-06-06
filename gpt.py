@@ -41,18 +41,20 @@ class KKTextMod(loader.Module):
                     try:
                         
                         response = conv.wait_event(events.NewMessage(incoming=True, from_users=5896221213))
+                        time.sleep(1)
+                        response2 = conv.wait_event(events.NewMessage(incoming=True, from_users=5896221213))
                         
                         await message.client.send_message(chat, reply)
                       
-                        response = await response
+                        response2 = await response2
                     except YouBlockedUserError:
                         await message.reply("<b>Разблокируй бота @GPT4Telegrambot.</b>")
                         return
-                    if not response.text:
+                    if not response2.text:
                         await message.edit("<Бот ответил не текстовым форматом, попробуйте ещё раз.</b>")
-                        time.sleep(40)
+                        time.sleep(30)
                         return
                     await message.delete()
-                    await message.client.send_message(message.to_id, response.text)
+                    await message.client.send_message(message.to_id, response2.text)
         except TimeoutError:
             return await message.edit("<b>Истекло время ожидания. Либо бот сдох, либо текст слишком большой, и бот не отвечает.</b>")
