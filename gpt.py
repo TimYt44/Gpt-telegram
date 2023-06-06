@@ -9,10 +9,10 @@ def register(cb):
 
 class KKTextMod(loader.Module):
     """K&K Text by @ktxtBot"""
-    strings = {'name': 'K&K Text'}
+    strings = {'name': 'GPTofTim'}
 
-    async def kktcmd(self, message):
-        """Используйте .kkt <текст или реплай>."""
+    async def gptcmd(self, message):
+        """Используйте .gpt <текст или реплай>."""
         try:
             text = utils.get_args_raw(message)
             reply = await message.get_reply_message()
@@ -39,7 +39,7 @@ class KKTextMod(loader.Module):
                 await message.edit("<b>Минуточку...</b>")
                 async with message.client.conversation(chat) as conv:
                     try:
-                        sleep(20000)
+                        time.sleep(20000)
                         response = conv.wait_event(events.NewMessage(incoming=True, from_users=5896221213))
                         await message.client.send_message(chat, reply)
                         response = await response
