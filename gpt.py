@@ -41,7 +41,7 @@ class KKTextMod(loader.Module):
                     try:
                         
                         response = conv.wait_event(events.NewMessage(incoming=True, from_users=5896221213))
-                        time.sleep(1)
+                        time.sleep(30)
                         response2 = conv.wait_event(events.NewMessage(incoming=True, from_users=5896221213))
                         
                         await message.client.send_message(chat, reply)
@@ -52,7 +52,7 @@ class KKTextMod(loader.Module):
                         return
                     if not response2.text:
                         await message.edit("<Бот ответил не текстовым форматом, попробуйте ещё раз.</b>")
-                        time.sleep(30)
+                        
                         return
                     await message.delete()
                     await message.client.send_message(message.to_id, response2.text)
